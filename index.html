@@ -118,14 +118,12 @@
 <main>
 <!-- HERO -->
 <section class="hero">
-  <div class="hero__bg">
-    <div class="hero__bg-glow1" aria-hidden="true"></div>
-    <div class="hero__bg-glow2" aria-hidden="true"></div>
-    <div class="hero__bg-grid" aria-hidden="true"></div>
-  </div>
+  <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+  <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+  <div class="hero__blob hero__blob--3" aria-hidden="true"></div>
   <div class="container">
     <div class="hero__grid">
-      <div>
+      <div class="hero__text">
         <span class="eyebrow">Especialistas em iFood &amp; 99Food</span>
         <h1>Seu delivery no <span class="text-grad">topo das buscas</span> e vendendo mais todo mês</h1>
         <p class="lead">Somos a agência de marketing focada em delivery e restaurantes. Gerenciamos suas lojas no iFood e na 99Food com dados, estratégia e execução para aumentar o faturamento e reduzir a dependência de descontos e taxas.</p>
@@ -142,25 +140,30 @@
         </div>
       </div>
 
-      <div class="hero__card" aria-hidden="true">
-        <div class="hero__card-top">
-          <span class="platform-chip"><span class="dot dot--ifood"></span> iFood</span>
-          <span class="platform-chip"><span class="dot dot--99"></span> 99Food</span>
-        </div>
-        <div class="metric-row">
-          <div>
-            <div class="big">+38%</div>
-            <span class="up">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 17L11 11l3 3 5-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8h3v3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              faturamento
-            </span>
+      <div style="position:relative">
+        <div class="hero__card" aria-hidden="true">
+          <div class="hero__card-top">
+            <span class="platform-chip"><span class="dot dot--ifood"></span> iFood</span>
+            <span class="platform-chip"><span class="dot dot--99"></span> 99Food</span>
           </div>
+          <div class="metric-row">
+            <div>
+              <div class="big">+38%</div>
+              <span class="up">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 17L11 11l3 3 5-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8h3v3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                faturamento
+              </span>
+            </div>
+          </div>
+          <div class="bars">
+            <span data-h="32"></span><span data-h="46"></span><span data-h="40"></span>
+            <span data-h="62"></span><span data-h="74"></span><span data-h="90"></span>
+          </div>
+          <div class="hero__card-foot"><span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span></div>
         </div>
-        <div class="bars">
-          <span data-h="32"></span><span data-h="46"></span><span data-h="40"></span>
-          <span data-h="62"></span><span data-h="74"></span><span data-h="90"></span>
+        <div class="hero__badge">
+          <span class="dot dot--ifood"></span> +127 restaurantes crescendo agora
         </div>
-        <div class="hero__card-foot"><span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span></div>
       </div>
     </div>
   </div>
@@ -190,13 +193,13 @@
 </section>
 
 <!-- STATS -->
-<section class="section section--tight">
+<section class="stats-section">
   <div class="container">
     <div class="stats">
-      <div class="stat reveal"><div class="num"><span data-count="450">0</span>+</div><div class="label">Planos aplicados</div></div>
+      <div class="stat reveal"><div class="num"><span data-count="450">0</span>+</div><div class="label">Planos aplicados em restaurantes</div></div>
       <div class="stat reveal"><div class="num"><span data-count="30">0</span>%</div><div class="label">De aumento médio no faturamento</div></div>
-      <div class="stat reveal"><div class="num"><span data-count="4.8" data-dec="1">0</span>/5</div><div class="label">Avaliação dos clientes</div></div>
-      <div class="stat reveal"><div class="num"><span data-count="2">0</span></div><div class="label">Plataformas: iFood e 99Food</div></div>
+      <div class="stat reveal"><div class="num"><span data-count="4.8" data-dec="1">0</span>/5</div><div class="label">Avaliação média dos clientes</div></div>
+      <div class="stat reveal"><div class="num"><span data-count="2">0</span></div><div class="label">Plataformas gerenciadas: iFood e 99Food</div></div>
     </div>
   </div>
 </section>
@@ -389,23 +392,39 @@
     <div class="grid grid-2">
       <figure class="quote reveal">
         <div class="quote__stars" aria-hidden="true">★★★★★</div>
-        <blockquote><p>"A Mibusca mudou completamente nosso delivery. Depois da otimização da loja nos aplicativos, os pedidos começaram a crescer de forma constante em pouco tempo."</p></blockquote>
-        <figcaption class="quote__who"><span class="quote__avatar">J</span><span><b>Jader</b><span>Proprietário · Nova Casa Grill</span></span></figcaption>
+        <blockquote><p>"A Mibusca mudou completamente nosso delivery. Depois da otimização da loja nos aplicativos, os pedidos começaram a crescer de forma constante em pouco tempo. Resultado que eu não esperava tão rápido."</p></blockquote>
+        <figcaption class="quote__who">
+          <span class="quote__avatar"><img src="https://i.pravatar.cc/100?img=12" alt="Foto de Jader" width="52" height="52" loading="lazy"></span>
+          <span><b>Jader Mendes</b><span>Proprietário · Nova Casa Grill</span></span>
+          <span class="quote__verified" aria-label="Cliente verificado"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </figcaption>
       </figure>
       <figure class="quote reveal">
         <div class="quote__stars" aria-hidden="true">★★★★★</div>
-        <blockquote><p>"Só com o planejamento do Perfil no Buscador, nosso faturamento aumentou mais de 30% em dois meses. Resultado de verdade."</p></blockquote>
-        <figcaption class="quote__who"><span class="quote__avatar">K</span><span><b>Kevellin Andrade</b><span>Proprietária · Le Chef Boucher</span></span></figcaption>
+        <blockquote><p>"Só com o planejamento do Perfil no Buscador, nosso faturamento aumentou mais de 30% em dois meses. Resultado de verdade, sem precisar aumentar desconto nem promoção."</p></blockquote>
+        <figcaption class="quote__who">
+          <span class="quote__avatar"><img src="https://i.pravatar.cc/100?img=47" alt="Foto de Kevellin" width="52" height="52" loading="lazy"></span>
+          <span><b>Kevellin Andrade</b><span>Proprietária · Le Chef Boucher</span></span>
+          <span class="quote__verified" aria-label="Cliente verificado"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </figcaption>
       </figure>
       <figure class="quote reveal">
         <div class="quote__stars" aria-hidden="true">★★★★★</div>
-        <blockquote><p>"Achei que marketing era só post no Instagram. A Mibusca me mostrou que tráfego pago e posicionamento no Buscador são o que realmente trazem resultado."</p></blockquote>
-        <figcaption class="quote__who"><span class="quote__avatar">D</span><span><b>Daliane Samila</b><span>Proprietária · Siciliana</span></span></figcaption>
+        <blockquote><p>"Achei que marketing era só post no Instagram. A Mibusca me mostrou que tráfego pago e posicionamento no Buscador são o que realmente trazem pedidos novos todo dia."</p></blockquote>
+        <figcaption class="quote__who">
+          <span class="quote__avatar"><img src="https://i.pravatar.cc/100?img=32" alt="Foto de Daliane" width="52" height="52" loading="lazy"></span>
+          <span><b>Daliane Samila</b><span>Proprietária · Pizzaria Siciliana</span></span>
+          <span class="quote__verified" aria-label="Cliente verificado"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </figcaption>
       </figure>
       <figure class="quote reveal">
         <div class="quote__stars" aria-hidden="true">★★★★★</div>
-        <blockquote><p>"Já tinha tentado outras agências, mas a Mibusca foi a única que entregou resultado de verdade. Hoje tenho um delivery que gera pedidos todo dia."</p></blockquote>
-        <figcaption class="quote__who"><span class="quote__avatar">W</span><span><b>Willian</b><span>Proprietário · Mestre das Relíquias</span></span></figcaption>
+        <blockquote><p>"Já tinha tentado outras agências, mas a Mibusca foi a única que entregou resultado real. Hoje tenho um delivery que gera pedidos todo dia, mesmo sem fazer promoção."</p></blockquote>
+        <figcaption class="quote__who">
+          <span class="quote__avatar"><img src="https://i.pravatar.cc/100?img=3" alt="Foto de Willian" width="52" height="52" loading="lazy"></span>
+          <span><b>Willian Rocha</b><span>Proprietário · Mestre das Relíquias</span></span>
+          <span class="quote__verified" aria-label="Cliente verificado"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </figcaption>
       </figure>
     </div>
   </div>
@@ -447,6 +466,8 @@
 <section class="section">
   <div class="container">
     <div class="cta reveal">
+      <div class="cta__orb cta__orb--1" aria-hidden="true"></div>
+      <div class="cta__orb cta__orb--2" aria-hidden="true"></div>
       <h2>Pronto para fazer seu delivery decolar?</h2>
       <p>Faça uma análise gratuita do seu planejamento atual. Descubra como aumentar seus pedidos e reduzir custos com as plataformas — sem enrolação.</p>
       <a class="btn btn--light btn--lg" href="https://wa.me/5571982489443?text=Oi!%20Quero%20agendar%20uma%20consulta%20gratuita%20com%20a%20Mibusca." target="_blank" rel="noopener">Agendar consulta gratuita</a>

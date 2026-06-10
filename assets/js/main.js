@@ -1,18 +1,36 @@
-/* Mibusca v2 — interações, sem dependências */
+/* Mibusca v3 — interações premium, sem dependências */
 (function () {
   "use strict";
 
-  // Scroll progress bar
+  /* ── Scroll progress bar ───────────────────────────────────────── */
   var bar = document.getElementById("scroll-progress");
   if (bar) {
     window.addEventListener("scroll", function () {
       var s = document.documentElement;
-      var pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
-      bar.style.width = pct + "%";
+      bar.style.width = ((s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100) + "%";
     }, { passive: true });
   }
 
-  // Mobile nav toggle
+  /* ── Parallax blobs no hero ────────────────────────────────────── */
+  var blobs = document.querySelectorAll(".hero__blob");
+  if (blobs.length && window.matchMedia("(min-width:760px)").matches) {
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var y = window.scrollY * .18;
+          blobs.forEach(function (b, i) {
+            var dir = i % 2 === 0 ? 1 : -1;
+            b.style.transform = "translateY(" + (y * dir * (i + 1) * .4) + "px)";
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ── Mobile nav ────────────────────────────────────────────────── */
   var nav = document.querySelector(".nav");
   var toggle = document.querySelector(".nav__toggle");
   if (toggle && nav) {
@@ -28,7 +46,7 @@
     });
   }
 
-  // FAQ accordion
+  /* ── FAQ accordion ─────────────────────────────────────────────── */
   document.querySelectorAll(".faq__item").forEach(function (item) {
     var q = item.querySelector(".faq__q");
     var a = item.querySelector(".faq__a");
@@ -48,7 +66,7 @@
     });
   });
 
-  // Reveal on scroll
+  /* ── Reveal on scroll ──────────────────────────────────────────── */
   var reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && reveals.length) {
     var io = new IntersectionObserver(function (entries) {
@@ -58,17 +76,24 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  // Animated counters
+  /* ── Stagger reveal children ───────────────────────────────────── */
+  document.querySelectorAll(".grid.reveal-stagger").forEach(function (grid) {
+    Array.from(grid.children).forEach(function (child, i) {
+      child.style.transitionDelay = (i * 80) + "ms";
+    });
+  });
+
+  /* ── Animated counters ─────────────────────────────────────────── */
   function animateCount(el) {
     var target = parseFloat(el.getAttribute("data-count"));
-    var dec = el.getAttribute("data-dec") === "1";
-    var dur = 1600, start = null;
+    var dec    = el.getAttribute("data-dec") === "1";
+    var dur    = 1800, start = null;
     function step(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
@@ -89,14 +114,31 @@
     counters.forEach(function (el) { co.observe(el); });
   }
 
-  // Animate hero bars
+  /* ── Hero bars ─────────────────────────────────────────────────── */
   document.querySelectorAll(".bars span").forEach(function (s, i) {
     setTimeout(function () {
       s.style.setProperty("--h", s.getAttribute("data-h") + "%");
-    }, 300 + i * 100);
+    }, 350 + i * 100);
   });
 
-  // Footer year
+  /* ── Card tilt (desktop only) ──────────────────────────────────── */
+  if (window.matchMedia("(min-width:980px) and (hover:hover)").matches) {
+    document.querySelectorAll(".card, .plan, .quote").forEach(function (card) {
+      card.addEventListener("mousemove", function (e) {
+        var rect = card.getBoundingClientRect();
+        var cx = rect.left + rect.width  / 2;
+        var cy = rect.top  + rect.height / 2;
+        var dx = (e.clientX - cx) / (rect.width  / 2);
+        var dy = (e.clientY - cy) / (rect.height / 2);
+        card.style.transform = "translateY(-6px) rotateX(" + (-dy * 3) + "deg) rotateY(" + (dx * 3) + "deg)";
+      });
+      card.addEventListener("mouseleave", function () {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  /* ── Footer year ───────────────────────────────────────────────── */
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
 })();
