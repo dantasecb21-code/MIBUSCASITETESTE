@@ -1,6 +1,16 @@
-/* Mibusca — interações leves, sem dependências */
+/* Mibusca v2 — interações, sem dependências */
 (function () {
   "use strict";
+
+  // Scroll progress bar
+  var bar = document.getElementById("scroll-progress");
+  if (bar) {
+    window.addEventListener("scroll", function () {
+      var s = document.documentElement;
+      var pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+      bar.style.width = pct + "%";
+    }, { passive: true });
+  }
 
   // Mobile nav toggle
   var nav = document.querySelector(".nav");
@@ -9,6 +19,12 @@
     toggle.addEventListener("click", function () {
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", function (e) {
+      if (nav.classList.contains("open") && !nav.contains(e.target)) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
     });
   }
 
@@ -37,9 +53,12 @@
   if ("IntersectionObserver" in window && reveals.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add("in"); });
@@ -48,8 +67,8 @@
   // Animated counters
   function animateCount(el) {
     var target = parseFloat(el.getAttribute("data-count"));
-    var dec = (el.getAttribute("data-dec") === "1");
-    var dur = 1400, start = null;
+    var dec = el.getAttribute("data-dec") === "1";
+    var dur = 1600, start = null;
     function step(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
@@ -66,13 +85,15 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) { animateCount(e.target); co.unobserve(e.target); }
       });
-    }, { threshold: 0.6 });
+    }, { threshold: 0.5 });
     counters.forEach(function (el) { co.observe(el); });
   }
 
   // Animate hero bars
   document.querySelectorAll(".bars span").forEach(function (s, i) {
-    setTimeout(function () { s.style.setProperty("--h", s.getAttribute("data-h") + "%"); }, 200 + i * 90);
+    setTimeout(function () {
+      s.style.setProperty("--h", s.getAttribute("data-h") + "%");
+    }, 300 + i * 100);
   });
 
   // Footer year
